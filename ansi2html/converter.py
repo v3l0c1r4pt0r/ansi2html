@@ -154,6 +154,10 @@ class Ansi2HTMLConverter(object):
                 n_open = 0
                 continue
 
+            if n_open > 0:
+                yield '</span>' * n_open
+                n_open = 0
+
             # Count how many tags we're opening
             n_open += 1
             css_classes = ["ansi%s" % str(p) for p in params]
